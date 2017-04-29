@@ -1,6 +1,8 @@
+// requires ClozeCard js file and inquirer package
 var ClozeCard = require("./ClozeCard");
 var inquirer = require("inquirer");
 
+// arr of objects to hold predefined questions
 var questionArr = [
   {
     text: "George Lucas officially gave the producers clearance to do \"Star Wars\" gags because he's a fan of the show.",
@@ -15,12 +17,18 @@ var questionArr = [
     cloze: "Meg"
   },
   {
-    text: "This is a test.",
-    cloze: "nope"
+    text: "Meg's friends assumed her name was short for Megan. In actuality, when Lois hands Meg's birth certificate, to Peter, he alters it; Meg's birth name is Megatron Griffin.",
+    cloze: "Megatron"
+  },
+  {
+    text: "The big chicken that always fights Peter is named Ernie.",
+    cloze: "Ernie"
   }
 ];
 
+// function wrapper that cycles through cards and prompts user for answers
 function askQuestion(count) {
+  // sets count equal to number of questions
   if (count < questionArr.length) {
     // the constructor works with or without the 'new' keyword
     var newCard = new ClozeCard(questionArr[count].text, questionArr[count].cloze);
@@ -36,14 +44,18 @@ function askQuestion(count) {
         name: "answer"
       }
     ]).then(function(user) {
+      // if user is right, congratulates
       if (user.answer === newCard.cloze) {
-        console.log("You got it right!");
+        console.log("You got it right!\n-------------------------------------");
+      // if wrong, prints correct answer
       } else {
         console.log("The correct response is: " + newCard.fullText.replace(newCard.cloze, "\"" + newCard.cloze + "\"") + "\n-------------------------------------");
       }
+      // asks next question with updated count
       askQuestion(count);
     });
   }
 }
 
+// calls function on runTime with initial count set
 askQuestion(0);
