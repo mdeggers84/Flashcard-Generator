@@ -1,6 +1,7 @@
 // requires ClozeCard js file and inquirer package
 var BasicCard = require("./BasicCard");
 var ClozeCard = require("./ClozeCard");
+var asciify = require("asciify");
 var inquirer = require("inquirer");
 
 // arr of objects to hold predefined questions
@@ -32,8 +33,19 @@ var questionArr = [
   }
 ];
 
+function prettyText(text) {
+  figlet(text, function(err, data) {
+    if (err) {
+      console.log("Something went wrong...");
+      console.dir(err);
+      return;
+    }
+    console.log(data);
+  });
+}
+
 // function wrapper that cycles through cards and prompts user for answers
-function askQuestion(count, type) {
+function askQuestion(count, type, score) {
   var newCard;
   // sets count equal to number of questions
   if (count < questionArr.length) {
@@ -62,11 +74,16 @@ function askQuestion(count, type) {
       }
     ]).then(function(user) {
       // calls newCard function to check answer
-      newCard.answer(user.answer);
-
+      score += newCard.answer(user.answer);
       // asks next question with updated count
-      askQuestion(count, type);
+      askQuestion(count, type, score);
     });
+  } else if (score === 5) {
+    asciify("Awesome!", function(err, res) { console.log(res); });
+  } else if (score >= 3) {
+    asciify("Ok!", function(err, res) { console.log(res); });
+  } else {
+    asciify("Meh...", function(err, res) { console.log(res); });
   }
 }
 
@@ -81,7 +98,7 @@ function questionStyle() {
     }
   ]).then(function(user) {
     // calls with initial count and card type set
-    askQuestion(0, user.choice);
+    askQuestion(0, user.choice, 0);
   });
 }
 

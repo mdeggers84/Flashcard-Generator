@@ -17,10 +17,11 @@ function ClozeCard(text, cloze) {
       this.answer = function(answer) {
         if (answer === this.cloze) {
           console.log("You got it right!\n-------------------------------------");
+          return 1;
         // if wrong, prints correct answer
-        } else {
-          console.log("The correct response is: " + this.text.replace(this.cloze, "\"" + this.cloze + "\""));
         }
+        console.log("The correct response is: " + this.text.replace(this.cloze, "\"" + this.cloze + "\""));
+        return 0;
       };
     } else {
       // allows user to create constructor without 'new' keyword

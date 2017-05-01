@@ -9,13 +9,14 @@ function BasicCard(front, back) {
       console.log("-------------------------------------\n" + this.front);
     };
     // verifies answer is correct
-    this.answer = function(answer) {
+    this.answer = function(answer, score) {
       if (answer === this.back) {
         console.log("You got it right!\n-------------------------------------");
+        return 1;
       // if incorrect, prints correct answer to console
-      } else {
-        console.log("The correct answer is : " + this.back);
       }
+      console.log("The correct answer is : " + this.back);
+      return 0;
     };
   } else {
     return new BasicCard(front, back);
