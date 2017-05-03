@@ -7,7 +7,7 @@ function ClozeCard(text, cloze) {
       this.text = text;
       // returns formatted partial text when called
       this.partial = function() {
-        return this.text.replace(this.cloze, " ... ");
+        return this.text.replace(this.cloze, " _____ ");
       };
       // prints question to console
       this.question = function() {

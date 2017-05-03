@@ -1,9 +1,9 @@
 // requires ClozeCard js file and inquirer package
+var questionArr = require("./questions.json");
 var BasicCard = require("./BasicCard");
 var ClozeCard = require("./ClozeCard");
 var asciify = require("asciify");
 var inquirer = require("inquirer");
-var questionArr = require("./questions");
 
 // arr of objects to hold predefined questions
 

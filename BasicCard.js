@@ -9,7 +9,7 @@ function BasicCard(front, back) {
       console.log("-------------------------------------\n" + this.front);
     };
     // verifies answer is correct
-    this.answer = function(answer, score) {
+    this.answer = function(answer) {
       if (answer === this.back) {
         console.log("You got it right!\n-------------------------------------");
         return 1;
