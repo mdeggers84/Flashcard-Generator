@@ -5,8 +5,6 @@ var ClozeCard = require("./ClozeCard");
 var asciify = require("asciify");
 var inquirer = require("inquirer");
 
-// arr of objects to hold predefined questions
-
 // function wrapper that cycles through cards and prompts user for answers
 function askQuestion(count, type, score) {
   var newCard;
